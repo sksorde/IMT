@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+﻿var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+var userSchema = new Schema({
+
+    firstName: { type: String, Required: 'First name cannot be left blank.' },
+
+    lastName: { type: String, Required: 'Last name cannot be left blank.' },
+
 });
 
-module.exports = router;
+module.exports = mongoose.model('dbUsers', userSchema);
