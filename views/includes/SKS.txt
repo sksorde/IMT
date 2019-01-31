@@ -1,0 +1,286 @@
+-----Top.html
+
+<div class="header">
+
+<div class="banner">
+<div class="bannerLeft">
+<div class="bannerTitle">Incident Management Tools</div>
+<div class="subTitle">Powered by TCS</div>
+</div>
+</div>
+<div class="nav">
+<div class="topnav">
+<a class="active" ,="" href="/home">Home</a>
+<a href="/incident/create">Create New Incident</a>
+<a href="/incident">Open Incidents</a>
+<a href="/ply">PLY</a>
+<a href="/has">HAS</a>
+<a href="/Search">Search</a>
+<input type="text" placeholder="Site Search...">
+</div>
+</div>
+</div>
+===============
+-----footer.html
+
+
+<div class="container">
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; TCS 2019 - 2020</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="../../public/javascripts/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../../public/javascripts/bootstrap.min.js"></script>
+
+==================
+------leftnav.html
+
+<div class="leftSection">
+<div class="sidenav">
+<a href="/home">IMT-Home</a>
+<a href="/incident/create">Create New Incident</a>
+<a href="/incident">Open Incidents</a>
+<a href="/QuickList">Quick List</a>
+<a href="/TTT">Transitory Team Referral</a>
+<a href="/over21days">Open Over 21 days</a>
+<a href="/AAC-consulation">AAC Consultation</a>
+<a href="/stage3">Stage3</a>
+<a href="/Segment 5">Segment 5</a>
+<a href="/LocalTriage">Local Triage</a>
+</div>
+</div>
+
+===================
+-----index.html
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <!-- Bootstrap Core CSS -->
+    <!--link href="../public/stylesheets/bootstrap.min.css" rel="stylesheet"-->
+    <!-- Custom CSS -->
+    <!--link href="../public/stylesheets/shop-homepage.css" rel="stylesheet"-->
+    <link href="../public/stylesheets/mainsks.css" rel="stylesheet">
+    <title>Incident Management Tool</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+    </script>
+
+    <script>
+        /*$(function () {
+            $("#divContent").load("layout.html");
+        });*/
+        $(function () {
+            $("#header").load("includes/top.html");
+            $("#footer").load("includes/footer.html");
+            $("#leftnav").load("includes/leftnav.html");
+        });
+
+        $(function () {
+            $('.editlink').on('click', function () {
+                var id = $(this).data('id');
+                $.ajax({
+                    method: "GET",
+                    url: "/fetch",
+                    data: {
+                        id: id
+                    },
+                }).done(function (data) {
+                    $('#id').val(data[0]['_id']);
+                    $('#firstName').val(data[0]['firstName']);
+                    $('#lastName').val(data[0]['lastName']);
+                    $('#eMail').val(data[0]['eMail']);
+                    $("#subbtn").val('Edit User');
+                    $('#form1').attr('action', '/edit');
+                });
+            });
+        });
+
+        function extendUser() {
+            var id = $(this).data('id');
+            alert(id);
+            document.getElementById("editUserDivA").innerHTML = "SKS";
+            var objTag = document.getElementById("editUserDiv");
+            if (objTag != null) {
+                objTag.setAttribute('data', '/extendUser');
+                alert('Page should have been changed');
+            }
+
+            //document.getElementById("editUserDiv").innerHTML = '<object type="text/html" width="100%" height=100% data="extendUser.html"></object>';
+            /* $.ajax({
+                 method: "GET",
+                 url: "/extendUser",
+                 data: {
+                     id: id
+                 },
+             }).done(function (data) {
+                 $('#id').val(data[0]['_id']);
+                 $('#firstName').val(data[0]['firstName']);
+                 $('#lastName').val(data[0]['lastName']);
+                 $('#eMail').val(data[0]['eMail']);
+             });     */
+            //window.location.href = "./extendUser.html";
+        };
+
+        /* $(function () {
+             $("#editUserDiv").load("/extendUser.html");
+         });*/
+
+        function nextPage() {
+            alert("test");
+            //myWindow = window.open('http://localhost/views/extendUser.html', '', 'width=600,height=600');
+            //myWindow.document.write("<p>This is 'myWindow'</p>");
+            //myWindow.focus();
+
+            $.ajax({
+                method: "GET",
+                //url: "/TTTPage",
+                success: function (data) {
+                    $('form1').attr('action', '/TTTPage.html');
+                }
+            }).done(function (data) {
+                $('form1').attr('action', '/TTTHeader');
+            });
+        };
+        /*
+                $(document).ready(function () {
+                    var from, to, subject, text;
+                    $("#sendEmail").click(function () {
+                        to = $("#to").val();
+                        subject = $("#subject").val();
+                        text = $("#content").val();
+                        $("#message").text("Sending E-mail...Please wait");
+                      $.post("/send", { to: to, subject: subject, text: text }, function (data) {
+                            if (data == "sent") {
+                                $("#message").empty().html("Email is been sent at " + to + ".Please check inbox!");
+                            }
+
+                        });
+                    });
+                });
+                */
+    </script>
+
+
+</head>
+
+<body>
+<div id="header"></div>
+<div>
+<table border ="1">
+<tr>
+<td><div id="leftnav"></div></td>
+<td>
+<div class="mainContainer">
+<div class="main" style="padding-left:70px;padding-top:-200px">
+<script src="/javascripts/app.js"></script>
+<h2>Welcome to NodeJS & MongoDB World!!</h2>
+<div class="success"></div>
+<div class="error"></div>
+<form id="form1" name="form1" method="post" action="/add">
+<input type="hidden" name="id" value="" id="id" />
+<table border="1">
+<tr>
+<td>First Name</td>
+<td><input type="text" id="firstName" name="firstName" required></td>
+</tr>
+<tr>
+<td>Last Name</td>
+<td><input type="text" id="lastName" name="lastName" required></td>
+</tr>
+<tr>
+<td>eMail Id</td>
+<td><input type="text" id="eMail" name="eMail"></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" id="subbtn" name="Add User" value="Add User"></td>
+</tr>
+</table>
+</form> 
+<div>
+                        <div class="row">
+                            <div class="span12">
+                                <div class="mini-layout">
+                                    <h2>Users Listing<a href="/exporttocsv" style="margin-left: 15%;">Export to CSV</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <table border="1">
+                            <tbody>
+                                <tr>
+                                    <th> ID </th>
+                                    <th> First Name </th>
+                                    <th> Last Name </th>
+                                    <th> Email </th>
+                                    <th> Action </th>
+                                </tr>
+                                {% if (data.length) %}
+                                {% for item in data %}
+                                <tr>
+                                    <td> {{item['_id']}} </td>
+                                    <td> <a href='#' onclick="extendUser()" id={{item["_id"]}}> {{item['firstName']}} </a></td>
+                                    <td> {{item['lastName']}} </td>
+                                    <td> {{item['eMail']}} </td>
+                                    <td>
+                                        <a id="editlink" class="editlink" href="javascript:void(0)" data-id='{{item["_id"]}}'> Edit </a>
+                                        |
+                                        <a href='/delete?id={{item["_id"]}}' onclick='return confirm("You are going to delete this record. Continue?")'> Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+</br>
+                    <div id="editUserDiv">
+                        <a href="/TTTPage"><input type="button" value="NextPage" id="nextPage"></a>
+
+                    </div>
+                    <div id="editUserDivA"></div>
+<!--br>
+<div id="container">
+Email Functionality:
+<br>
+<div>
+<input id="to" type="text" placeholder="Enter E-mail ID where you want to send" />
+<input id="subject" type="text" placeholder="Write Subject" />
+<textarea id="content" cols="40" rows="5" placeholder="Write what you want to send"></textarea>
+<button id="sendEmail">Send Email</button>
+<span id="message"></span>
+</div>
+</div--> 
+</div> <!--This is for div class=main stye-->
+</div>
+</td>
+</tr>
+</table>
+</div> 
+<div id="footer"></div>
+</body>
+
+</html>
+================
+
+Regards,
+SKS
