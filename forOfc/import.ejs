@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="../../stylesheets/mainsks.css" rel="stylesheet">
+    <title>Incident Management Tool</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+    </script>
+	<script>
+        /*$(function () {
+            $("#divContent").load("layout.html");
+        });*/
+        $(function () {
+            $("#header").load("../includes/top.ejs");
+            $("#footer").load("../includes/footer.ejs");
+            $("#leftnav").load("../includes/leftnav.ejs");
+        });
+	</script>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="leftnav"></div>
+
+	<div class="container">
+	
+	     <p>Use form to upload Incidents. Click <a href="C:\Parag\HTML\name.html"> here. </a> </p>
+	     <form action="/import/save/" method="POST"encType="multipart/form-data">
+		<input type="file" name="file" accept="*.csv" ><br/><br/> 
+		<input type="submit" value="Upload">
+	     </form>
+	
+	</div>
+
+<div id="footer"></div>
+</body>
+</html>

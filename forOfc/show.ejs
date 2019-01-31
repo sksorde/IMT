@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="../../stylesheets/mainsks.css" rel="stylesheet">
+	<!--link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/toolbar.css' />
+    <link rel='stylesheet' href='/stylesheets/DetailFrame.css' /-->
+    <title>Incident Management Tool</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+    </script>
+	<script>
+        /*$(function () {
+            $("#divContent").load("layout.html");
+        });*/
+        $(function () {
+            $("#header").load("../../includes/top.ejs");
+            $("#footer").load("../../includes/footer.ejs");
+            $("#leftnav").load("../../includes/leftnav.ejs");
+        });
+	</script>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="leftnav"></div>
+
+    <div class="container">
+
+
+        <h1>Incident Detail</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Raised By</td>
+
+                    <td>:</td>
+                    <td><%= employee.raisedby %></td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+
+                    <td>:</td>
+                    <td><%= employee.location %></td>
+                </tr>
+                <tr>
+
+                    <td>Team Leader</td>
+                    <td>:</td>
+                    <td><%= employee.teamleader%></td>
+                </tr>
+		<tr>
+
+                    <td>Team</td>
+                    <td>:</td>
+                    <td><%= employee.team%></td>
+                </tr>
+                <tr>
+
+                    <td>Sub Area</td>
+                    <td>:</td>
+                    <td><%= employee.subarea%></td>
+                </tr>
+
+                <tr>
+
+                    <td>SR Number</td>
+                    <td>:</td>
+                    <td><%= employee.srnumber%></td>
+                </tr>
+
+                <tr>
+
+                    <td>SR Sub Status</td>
+                    <td>:</td>
+                    <td><%= employee.srsubstatus%></td>
+                </tr>
+
+                <tr>
+
+                    <td>Backgound Information </td>
+                    <td>:</td>
+                    <td><%= employee.bginfo%></td>
+                </tr>                
+
+            </tbody>
+        </table>
+        <h3><a href="/employees/edit/<%= employee._id%>">Add New Update</a></h3>
+
+	
+    </div>
+	
+
+<div class="detailframe">
+		
+		<% if(employeedetail.length>0) { %>
+        <table class="list-table">
+           <thead>
+                <tr>
+		    <th>Updated Date</th>
+                    <th>Details</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i
+                <employeedetail.length;i++) { %>
+                    <tr>
+			<td><%= employeedetail[i].updated_at%></td>                                                
+                        <td><%= employeedetail[i].otherupdates%></td>
+			<td
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+        <% } else { %>
+
+       
+        <% } %>
+
+
+	</div>
+<div id="footer" style="margin-top: 80px"></div>
+</body>
+</html>

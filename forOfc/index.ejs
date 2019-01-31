@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="../../stylesheets/mainsks.css" rel="stylesheet">
+    <title>Incident Management Tool</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+    </script>
+	<script>
+        /*$(function () {
+            $("#divContent").load("layout.html");
+        });*/
+        $(function () {
+            $("#header").load("../includes/top.ejs");
+            $("#footer").load("../includes/footer.ejs");
+            $("#leftnav").load("../includes/leftnav.ejs");
+        });
+	</script>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="leftnav"></div>
+
+    <div class="container">
+        
+        <h1>Incident List</h1>
+        <% if(employees.length>0) { %>
+        <table class="list-table">
+            <thead>
+                <tr>
+                    <th>Raised By</th>
+                    <th>Location</th>
+                    <th>Team Leader</th>
+		    <th>Sub Area</th>
+  		    <th>SR Number</th>
+		    <th>SR Substatus</th>
+		    <th>Back ground information</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i
+                <employees.length;i++) { %>
+                    <tr>
+                        <td><a href="/incident/show/<%= employees[i]._id%>"><%= employees[i].raisedby%></a></td>
+                        <td><%= employees[i].location%></td>
+                        <td><%= employees[i].teamleader%></td>
+                        <td><%= employees[i].subarea%></td>
+                        <td><%= employees[i].srnumber%></td>
+                        <td><%= employees[i].srsubstatus%></td>
+                        <td><%= employees[i].bginfo%></td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+        <% } else { %>
+        <div>No Incident found.</div>
+        <% } %>
+    </div>
+<div id="footer"></div>
+</body>
+</html>

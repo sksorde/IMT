@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="../../stylesheets/mainsks.css" rel="stylesheet">
+    <title>Incident Management Tool</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+    </script>
+	<script>
+        /*$(function () {
+            $("#divContent").load("layout.html");
+        });*/
+        $(function () {
+            $("#header").load("../../includes/top.ejs");
+            $("#footer").load("../../includes/footer.ejs");
+            $("#leftnav").load("../../includes/leftnav.ejs");
+        });
+	</script>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="leftnav"></div>
+
+    <div class="container">        
+        <h1>Edit Incident</h1>
+        <form action="/employees/Addupdate/<%= employee._id%>" method="post">
+            <table>
+                <tbody>
+			
+		   <tr>
+                        
+                        <td><input type="hidden" name="empid" readonly= true value="<%= employee._id %>" /></td>
+                    </tr>
+ 		   
+                    <tr>
+                        <td>Name</td>
+                        <td><input type="text" name="raisedby" readonly= true value="<%= employee.raisedby %>" /></td>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td><textarea name="location" readonly= true><%= employee.location %></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Tem Leader</td>
+                        <td><input type="text" name="teamleader" readonly= true value="<%= employee.teamleader %>" /></td>
+                    </tr>
+                    <tr>
+                        <td>Team</td>
+                        <td><input type="text" name="team" readonly= true value="<%= employee.team %>" /></td>
+                    </tr>
+		    <tr>
+                        <td>Update</td>
+                        <td><textarea name="otherupdates"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit">Save Update</button></td>
+                    </tr>
+	
+   		    
+                </tbody>
+            </table>
+        </form>
+    </div>
+<div id="footer"></div>
+</body>
+</html>
