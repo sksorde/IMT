@@ -1,0 +1,9 @@
+npm install --save
+npm install --save mongodb
+npm install --save mongoose
+npm install --save ejs
+npm install --save nodemon
+npm install --save express-fileupload
+npm install --save csv-express
+npm install --save fast-csv
+
